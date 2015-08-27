@@ -46,7 +46,8 @@ void makePrettyTurnOn(){
   TCanvas *c1 = new TCanvas();
   TPad *pad1 = new TPad("pad1","",0,0,1,1);
   TPad *pad2 = new TPad("pad2","",0,0,1,1);
-  pad2->SetFillStyle(4000);
+  //pad2->SetFillStyle(4000);
+  pad2->SetFillColorAlpha(kWhite,0);
   pad1->Draw();
   pad1->cd();
   hEmpty->SetMinimum(0);
@@ -70,7 +71,7 @@ void makePrettyTurnOn(){
   TH1D *hEmpty2 = new TH1D("hEmpty2","",nBins,0.,210);
   hEmpty2->SetMinimum(0);
   hEmpty2->SetMaximum(1.15);
-  hEmpty2->GetXaxis()->SetAxisColor(kWhite,1);
+  //hEmpty2->GetXaxis()->SetAxisColor(kBlack,1);
   hEmpty2->GetXaxis()->SetLabelSize(0);
   hEmpty2->Draw("][sames");  
 
@@ -94,8 +95,11 @@ void makePrettyTurnOn(){
   }
 
   leg->Draw();
+  //pad1->cd();
+  //hEmpty->Draw();
 
   c1->SaveAs("Plots/TurnOnCurveCentrality.pdf");
+  c1->SaveAs("Plots/TurnOnCurveCentrality.gif");
 
 }
 
