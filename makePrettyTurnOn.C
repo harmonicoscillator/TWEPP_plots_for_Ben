@@ -87,7 +87,7 @@ void makePrettyTurnOn(){
   TLegend *leg = new TLegend(0.3689777,0.305074,0.6927732,0.7257928,"L1 centrality threshold");
   leg->SetFillColor(0);
   leg->SetTextFont(42);
-  leg->SetTextSizePixels(24);
+  leg->SetTextSize(0.03);
 
   for(int i = 1; i < NThresholds; i++){
     leg->AddEntry(asymm[i],Form("L1 Centrality > %d%%",(int)L1_THRESHOLD[i]/2),"lp");
