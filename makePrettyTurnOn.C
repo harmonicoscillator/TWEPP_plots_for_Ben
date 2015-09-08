@@ -58,6 +58,7 @@ void makePrettyTurnOn(){
   hEmpty2->SetMinimum(0);
   hEmpty2->SetMaximum(1.15);
   hEmpty2->GetXaxis()->SetLabelSize(0);
+  hEmpty2->GetXaxis()->SetNdivisions(0, 0,0, false);
   hEmpty2->Draw("][sames");  
 
   TLatex *tex = new TLatex(5, 1.05 , "CMS Simulation Preliminary");
