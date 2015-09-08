@@ -32,11 +32,11 @@ void makePrettyTurnOn(){
   }
 
   const int nBins = 100;
-  const double maxPt = 150;
+  const double maxPt = 130;
 
   TH1D *hEmpty = new TH1D("hEmpty",";Offline centrality (%); Efficiency",nBins,0.,maxPt);
 
-  TCanvas *c1 = new TCanvas("c1","c1",800,600);
+  TCanvas *c1 = new TCanvas("c1","c1",700,600);
   TPad *pad1 = new TPad("pad1","",0,0,1,1);
   TPad *pad2 = new TPad("pad2","",0,0,1,1);
   //pad2->SetFillStyle(4000);
@@ -66,7 +66,7 @@ void makePrettyTurnOn(){
     asymm[i]->Draw("p");
   }
 
-  TLegend *leg = new TLegend(0.723,0.330,0.96,0.75,"Threshold");
+  TLegend *leg = new TLegend(0.823,0.330,0.96,0.75,"Threshold");
   //TLegend *leg = new TLegend(0.3689777,0.305074,0.6927732,0.7257928);
   //leg->SetTextAlign(13);
   leg->SetFillColor(0);
