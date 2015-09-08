@@ -15,13 +15,6 @@ const Int_t COLORS[NThresholds] = {1, 1, kBlue,kRed,kOrange,kRed+2,1,6,kBlue,kRe
 
 void makePrettyTurnOn(){
 
-  // gROOT->SetStyle("Plain");	
-  // gStyle->SetOptStat(0);
-  // gStyle->SetOptStat(0000);
-  // gStyle->SetPalette(0);
-  // gStyle->SetCanvasColor(0);
-  // gStyle->SetFrameFillColor(0);
-  // gStyle->SetOptTitle(0);
   setTDRStyle();
 
   TFile *inFile = TFile::Open("Hydjet502MC_CentralityCalibration.root");
@@ -39,11 +32,11 @@ void makePrettyTurnOn(){
   }
 
   const int nBins = 100;
-  const double maxPt = 105;
+  const double maxPt = 150;
 
   TH1D *hEmpty = new TH1D("hEmpty",";Offline centrality (%); Efficiency",nBins,0.,maxPt);
 
-  TCanvas *c1 = new TCanvas();
+  TCanvas *c1 = new TCanvas("c1","c1",800,600);
   TPad *pad1 = new TPad("pad1","",0,0,1,1);
   TPad *pad2 = new TPad("pad2","",0,0,1,1);
   //pad2->SetFillStyle(4000);
@@ -53,25 +46,14 @@ void makePrettyTurnOn(){
   hEmpty->SetMinimum(0);
   hEmpty->SetMaximum(1.15);
 
-  // for(int i = 1; i <= nBins; i +=10)
-  // {
-  //   hEmpty->GetXaxis()->SetBinLabel(i, Form("%d",i-1));
-  // }
-  // hEmpty->GetXaxis()->SetNoAlphanumeric();
-  // hEmpty->GetXaxis()->SetNdivisions(10,2,0,false);
-  // hEmpty->GetXaxis()->SetTicks("+");
-  // hEmpty->GetXaxis()->LabelsOption("v");
-  // hEmpty->GetXaxis()->SetLabelFont(42);
-  // hEmpty->GetXaxis()->SetLabelSize(0.05);
   hEmpty->Draw();
   pad1->Update();
 
   pad2->Draw();
   pad2->cd();
-  TH1D *hEmpty2 = new TH1D("hEmpty2","",nBins,0.,210);
+  TH1D *hEmpty2 = new TH1D("hEmpty2","",nBins,0.,2*maxPt);
   hEmpty2->SetMinimum(0);
   hEmpty2->SetMaximum(1.15);
-  //hEmpty2->GetXaxis()->SetAxisColor(kBlack,1);
   hEmpty2->GetXaxis()->SetLabelSize(0);
   hEmpty2->Draw("][sames");  
 
@@ -84,15 +66,25 @@ void makePrettyTurnOn(){
     asymm[i]->Draw("p");
   }
 
-  TLegend *leg = new TLegend(0.3689777,0.305074,0.6927732,0.7257928,"L1 centrality threshold");
+  TLegend *leg = new TLegend(0.723,0.330,0.96,0.75,"Threshold");
+  //TLegend *leg = new TLegend(0.3689777,0.305074,0.6927732,0.7257928);
+  //leg->SetTextAlign(13);
   leg->SetFillColor(0);
   leg->SetTextFont(42);
   leg->SetTextSize(0.03);
+  //leg->AddEntry((TObject*)0, "L1 Centrality Threshold", "");
+  //leg->AddEntry((TObject*)0, "Threshold", "");
 
   for(int i = 1; i < NThresholds; i++){
-    leg->AddEntry(asymm[i],Form("L1 Centrality > %d%%",(int)L1_THRESHOLD[i]/2),"lp");
+    leg->AddEntry(asymm[i],Form("%d%%",(int)L1_THRESHOLD[i]/2),"lp");
     line[i]->Draw();
   }
+
+  TLine *endLine=new TLine(200,0.,200,1.);
+  endLine->SetLineWidth(1);
+  endLine->SetLineStyle(1);
+  endLine->SetLineColor(kBlack);
+  endLine->Draw();
 
   leg->Draw();
   //pad1->cd();
