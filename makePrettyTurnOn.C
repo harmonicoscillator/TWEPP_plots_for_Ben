@@ -36,12 +36,12 @@ void makePrettyTurnOn(){
 
   TH1D *hEmpty = new TH1D("hEmpty",";Offline centrality (%); Efficiency",nBins,0.,maxPt);
 
-  TCanvas *c1 = new TCanvas("c1","c1",700,600);
+  TCanvas *c1 = new TCanvas("c1","c1",720,600);
   //c1->SetRightMargin(0.5);
   TPad *pad1 = new TPad("pad1","",0,0,1,1);
   TPad *pad2 = new TPad("pad2","",0,0,1,1);
-  pad1->SetRightMargin(1./7.);
-  pad2->SetRightMargin(1./7.);
+  pad1->SetRightMargin(1.2/7.2);
+  pad2->SetRightMargin(1.2/7.2);
   //pad2->SetFillStyle(4000);
   pad2->SetFillColorAlpha(kWhite,0);
   pad1->Draw();
@@ -69,7 +69,7 @@ void makePrettyTurnOn(){
     asymm[i]->Draw("p");
   }
 
-  TLegend *leg = new TLegend(0.873,0.330,1,0.75,"Threshold");
+  TLegend *leg = new TLegend(0.848,0.330,0.995,0.75,"L1 Threshold");
   //TLegend *leg = new TLegend(0.3689777,0.305074,0.6927732,0.7257928);
   //leg->SetTextAlign(13);
   leg->SetFillColor(0);
